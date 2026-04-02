@@ -1,0 +1,26 @@
+# Compiled object files
+*.o
+
+# Executables
+xsc
+a.out
+*.out
+
+# Debug / build artifacts
+*.log
+*.tmp
+
+# Editor files
+*.swp
+*.swo
+*~
+
+# VS Code
+.vscode/
+
+# CLion / JetBrains
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
