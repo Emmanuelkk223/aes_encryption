@@ -3,6 +3,24 @@
 
 const int64 RCs[] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16};
 
+int64 fibonacci(int8 rnd, int8 stop, int64 x, int64 y) {
+    if (!rnd || (rnd == 1))
+        return 1;
+    else if ((rnd == stop) || (rnd > 15))
+        return (x+y);
+    else
+        return fibonacci(++rnd, stop, y, (x+y));
+}
+
+void fibonaccis(int8 rnd) {
+    int64 num;
+    
+    num = fibonacci(0, 4, 0, 0);
+    printf("%lld\n", $8 num);
+    
+    return;
+}
+
 int192 xbox(int128 input) {
     int192 output;
     int256 *p;
@@ -19,9 +37,9 @@ void showint192(int8 *ident, int192 input) {
     int8 i;
     
     printf("%s = 0x", ident);
-    mem = $v ($v &input-4);
+    mem = $v ($v &input+24);
     for (i = 0; i < 6; i++) {
-        mem += 4;
+        mem -= 4;
         p = (int32 *)mem;
         printf("%.08x", $i *p);
     }
@@ -36,9 +54,9 @@ void showint128(int8 *ident, int128 input) {
     int8 i;
     
     printf("%s = 0x", ident);
-    mem = $v ($v &input-4);
+    mem = $v ($v &input+16);
     for (i = 0; i < 4; i++) {
-        mem += 4;
+        mem -= 4;
         p = (int32 *)mem;
         printf("%.08x", $i *p);
     }
@@ -104,15 +122,19 @@ int128 f(int128 input) {
     return output;
 }
 
+// int main() {
+//     roundkey *p;
+    
+//     p = gensubkeys($16 0x50505050);
+    
+//     do {
+//         show(p);
+//     } while(p = p->next);
+//     return 0;
+// }
+
 int main() {
-    roundkey *p;
-    
-    p = gensubkeys($16 0x50505050);
-    
-    do {
-        show(p);
-    } while(p = p->next);
-    return 0;
+    fibonaccis(4);
 }
 
 roundkey *mkroundkey(int8 id, int128 subkey, int64 rc) {

@@ -67,6 +67,7 @@ void showint128(int8*, int128);
 void showint192(int8*, int192);
 void showroundkey(int8*, roundkey*);
 
+int64 fibonacci(int8, int8, int64, int64);
 void zero(int8*,int16);
 int128 mksubkey(int8,int128,int64);
 roundkey *mkroundkey(int8,int128,int64);
@@ -78,4 +79,5 @@ int128 cbox(int192);
 int128 f(int128);
 
 state *xsc256int(int256);
+ void fibonaccis(int8);
  int main(void);
