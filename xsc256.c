@@ -1,25 +1,31 @@
 /* xsc256.c */
 #include <xsc256.h>
 
-const int64 RCs[] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16};
+const int64 RCs[] = {
+  1,1,2,3,5,8,13,21,34,55,89,144,233,377,610,987
+};
 
-int64 fibonacci(int8 rnd, int8 stop, int64 x, int64 y) {
-    if (!rnd || (rnd == 1))
-        return 1;
-    else if ((rnd == stop) || (rnd > 15))
-        return (x+y);
-    else
-        return fibonacci(++rnd, stop, y, (x+y));
-}
+// int64 fibonacci(int8 rnd, int8 stop, int64 x, int64 y) {
+//     if ((rnd == stop) || (rnd > 15))
+//         return (x+y);
+//     else if (!rnd || (rnd == 1))
+//         return fibonacci(++rnd, stop, 1, 1);
+//     else
+//         return fibonacci(++rnd, stop, y, (x+y));
+// }
 
-void fibonaccis(int8 rnd) {
-    int64 num;
+// void fibonaccis() {
+//     int64 num, x;
     
-    num = fibonacci(0, 4, 0, 0);
-    printf("%lld\n", $8 num);
+//     printf("const int64 RCs[] = {\n  ");
+//     for (x = 0; x < 16; x++) {
+//         num = fibonacci(0, x, 0, 0);
+//         printf("%lld,", $8 num);
+//     }
+//     printf("\n};\n");
     
-    return;
-}
+//     return;
+// }
 
 int192 xbox(int128 input) {
     int192 output;
@@ -122,20 +128,20 @@ int128 f(int128 input) {
     return output;
 }
 
-// int main() {
-//     roundkey *p;
-    
-//     p = gensubkeys($16 0x50505050);
-    
-//     do {
-//         show(p);
-//     } while(p = p->next);
-//     return 0;
-// }
-
 int main() {
-    fibonaccis(4);
+    roundkey *p;
+    
+    p = gensubkeys($16 0x50505050);
+    
+    do {
+        show(p);
+    } while(p = p->next);
+    return 0;
 }
+
+// int main() {
+//     fibonaccis();
+// }
 
 roundkey *mkroundkey(int8 id, int128 subkey, int64 rc) {
     int16 size;
